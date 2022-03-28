@@ -1,0 +1,47 @@
+﻿@using BlazorApp.Models
+@inject HttpClient Http
+
+<div class="card shadow">
+    <div class="card-body">
+        <h5 class="card-title">Devices</h5>
+        
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">DeviceId</th>
+              <th scope="col">Status</th>
+              <th scope="col">Placement</th>
+              <th scope="col">Sensor Type</th>
+              <th scope="col">Last Updated</th>
+              <th scope="col">Measurements</th>
+              <th scope="col">Notifications</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+                @if(devices == null)
+                {
+                    <tr>
+                        <td colspan="8">Loading...</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach(var device in devices)
+                    {
+                        <DeviceListItem Device="@device" />
+                    }                  
+                }
+          </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    private DeviceItem[] devices;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        devices = await Http.GetFromJsonAsync<DeviceItem[]>("https://netfund21-functionapp.azurewebsites.net/api/GetDevices");
+    }
+}

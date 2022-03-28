@@ -1,0 +1,1 @@
+C:\Users\HansMattin-Lassei\Documents\Utbildning\NETFUND21\netfund21-cloud\Lektion-1\BlazorApp\obj\Release\net6.0\browser-wasm\PubTmp\Out\web.config
