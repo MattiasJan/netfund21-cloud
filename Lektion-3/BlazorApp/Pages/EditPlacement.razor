@@ -1,0 +1,49 @@
+﻿@page "/edit/placement/{id}"
+@using BlazorApp.Models
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>Edit Placement for @id</h3>
+<div class="container mt-5">
+    <div class="d-flex justify-content-center">
+        <div class="col-6">
+            <EditForm Model="@model" OnSubmit="@HandleSubmit">
+                <div>
+                    @ErrorMessage
+                </div>
+                <div class="mb-3">
+                    <InputText @bind-Value="model.Placement" type="text" class="form-control" placeholder="New Device Placement" />
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-secondary">Update Placement</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public string id { get; set; } = null!;
+
+    private EditPlacementModel model;
+    private string ErrorMessage = "";
+
+
+    protected override void OnInitialized()
+    {
+        model = new EditPlacementModel();
+        model.DeviceId = id;
+    }
+
+    private async Task HandleSubmit()
+    {
+        var result = await Http.PostAsJsonAsync("UpdatePlacement", model);
+        if (result.IsSuccessStatusCode)
+            NavigationManager.NavigateTo("/");
+        else
+            ErrorMessage = "Something went wrong";
+    }
+}
+

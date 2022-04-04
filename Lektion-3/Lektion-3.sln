@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFunctions", "AzureFunctions\AzureFunctions.csproj", "{CEB09D3F-2578-452A-9D89-463772872755}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IotDevice.Console", "IotDevice.Console\IotDevice.Console.csproj", "{033503CB-F7A0-412F-B515-B5BD2B75EA39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp", "BlazorApp\BlazorApp.csproj", "{8033E817-A666-4B3E-AC66-D512F1F88BEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEB09D3F-2578-452A-9D89-463772872755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEB09D3F-2578-452A-9D89-463772872755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEB09D3F-2578-452A-9D89-463772872755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEB09D3F-2578-452A-9D89-463772872755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{033503CB-F7A0-412F-B515-B5BD2B75EA39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{033503CB-F7A0-412F-B515-B5BD2B75EA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{033503CB-F7A0-412F-B515-B5BD2B75EA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{033503CB-F7A0-412F-B515-B5BD2B75EA39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8033E817-A666-4B3E-AC66-D512F1F88BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8033E817-A666-4B3E-AC66-D512F1F88BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8033E817-A666-4B3E-AC66-D512F1F88BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8033E817-A666-4B3E-AC66-D512F1F88BEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8E0EB31-4200-4E1E-9942-7AE07E50FF7F}
+	EndGlobalSection
+EndGlobal

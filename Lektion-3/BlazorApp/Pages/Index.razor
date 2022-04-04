@@ -1,0 +1,110 @@
+﻿@page "/"
+@using BlazorApp.Models
+@inject HttpClient Http
+
+
+<PageTitle>Overview</PageTitle>
+<SiteTitle Title="Overview" />
+
+<div class="my-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+
+
+                        @if (devices == null)
+                        {
+                            <p>loading...</p>
+                        }
+                        else
+                        {
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Device Id</th>
+                                        <th>Sensor Type</th>
+                                        <th>Placement</th>
+                                        <th>Data</th>
+                                        <th>Notifications</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var device in devices)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center me-4">
+                                                    @if (device.ConnectionState == "Connected")
+                                                    {
+                                                        <div class="dot online"></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="dot offline"></div>
+                                                    }
+                                                    <div class="ms-2">@device.DeviceId</div>
+                                                </div>
+                                            </td>
+                                            <td>@device.SensorType</td>
+                                            <td>@device.Placement</td>
+                                            <td>@device.Temperature °C, @device.Humidity %</td>
+                                            <td>
+                                                @if (device.TemperatureAlert)
+                                                {
+                                                    <i class="fa-solid fa-triangle-exclamation text-warning"></i>
+                                                }
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-link"><i class="fa-solid fa-pause"></i></button>
+
+                                                <NavLink href="@("edit/placement/" + device.DeviceId)" class="btn btn-link"><i class="fa-solid fa-pen-to-square"></i></NavLink>
+
+                                                <button @onclick="() => HandleDelete(device.DeviceId)" type="button" class="btn btn-link"><i class="fa-solid fa-trash"></i></button>
+
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    private DeviceModel[] devices;
+    private Timer timer;
+
+    protected override async Task OnInitializedAsync()
+    {
+        timer = new Timer(async (object stateInfo) =>
+        {
+            devices = await Http.GetFromJsonAsync<DeviceModel[]>("devices");
+            StateHasChanged();
+        }, new AutoResetEvent(false), 0, 3000);
+    }
+
+    private void HandleDelete(string deviceId)
+    {
+        DeleteAsync(deviceId).GetAwaiter();
+    }
+
+    private async Task DeleteAsync(string deviceId)
+    {
+        var result = await Http.DeleteAsync($"devices?id={deviceId}");
+        if(result.IsSuccessStatusCode)
+            StateHasChanged();     
+    }
+}

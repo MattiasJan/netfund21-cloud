@@ -1,0 +1,18 @@
+﻿<section class="site-title">
+    <div class="container mt-5">
+        <div class="ms-5">
+            <h1>@Title</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><NavLink href="">Overview</NavLink></li>
+                    <li class="breadcrumb-item active" aria-current="page">@Title</li>
+                </ol>
+            </nav>  
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+}
